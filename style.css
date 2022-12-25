@@ -10,3 +10,35 @@ body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
 }
+
+header {
+  font-size: 1.5rem;
+  margin: 3rem 0;
+}
+
+header,
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form input,
+form button {
+  padding: 0.5rem;
+  background-color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+}
+
+form button {
+  color: #d88771;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background-color: #d88771;
+  color: #fff;
+}
