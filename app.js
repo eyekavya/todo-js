@@ -5,7 +5,7 @@ const todoList = document.querySelector(".todo-list");
 
 // Event Listeners
 todoBtn.addEventListener("click", addTodo);
-
+todoList.addEventListener("click", compDlt);
 // Functions
 function addTodo(event) {
   console.log("hi");
@@ -58,4 +58,17 @@ function addTodo(event) {
 
   // Clear TO DO Input value
   todoInput.value = "";
+}
+
+function compDlt(e) {
+  // Can be li, i or i
+  console.log(e.target);
+  const itemClicked = e.target;
+
+  // Delete TODO
+  if (itemClicked.classList[0] === "dlt-btn") {
+    // parent element of dlt btn will always be the todo li
+    const todo = itemClicked.parentElement;
+    todo.remove();
+  }
 }

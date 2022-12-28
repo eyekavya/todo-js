@@ -84,3 +84,9 @@ form button:hover {
 .todo-item {
   padding: 0rem 0.5rem;
 }
+
+.fa-trash,
+.fa-check {
+  /* Since the button was not working roperly (icons were not clickable) */
+  pointer-events: none;
+}
