@@ -71,4 +71,10 @@ function compDlt(e) {
     const todo = itemClicked.parentElement;
     todo.remove();
   }
+
+  //Completed TODO
+  if (itemClicked.classList[0] === "completed-btn") {
+    const todo = itemClicked.parentElement;
+    todo.classList.add("completed");
+  }
 }
