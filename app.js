@@ -64,7 +64,7 @@ function compDlt(e) {
   // Can be li, i or i
   console.log(e.target);
   const itemClicked = e.target;
-
+  console.log(itemClicked.classList);
   // Delete TODO
   if (itemClicked.classList[0] === "dlt-btn") {
     // parent element of dlt btn will always be the todo li
