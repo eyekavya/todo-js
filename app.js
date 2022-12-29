@@ -69,7 +69,12 @@ function compDlt(e) {
   if (itemClicked.classList[0] === "dlt-btn") {
     // parent element of dlt btn will always be the todo li
     const todo = itemClicked.parentElement;
-    todo.remove();
+    //Animation
+    // For a fall transition before removing it
+    todo.classList.add("fall");
+    // todo.remove();
+    // List is removed at the end of the transition
+    todo.addEventListener("transitionend", () => todo.remove());
   }
 
   //Completed TODO
