@@ -5,6 +5,7 @@ const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".filter-todo");
 
 // Event Listeners
+document.addEventListener("DOMContentLoaded", getTodos);
 todoBtn.addEventListener("click", addTodo);
 todoList.addEventListener("click", compDlt);
 filterOption.addEventListener("click", filterTodo);
@@ -78,6 +79,7 @@ function compDlt(e) {
     //Animation
     // For a fall transition before removing it
     todo.classList.add("fall");
+    dltLocalTodo(todo);
     // todo.remove();
     // List is removed at the end of the transition
     todo.addEventListener("transitionend", () => todo.remove());
@@ -115,7 +117,9 @@ function filterTodo(i) {
     }
   });
 }
-function saveTodos(e) {
+
+//LOCAL STORAGE - SAVE DATA
+function saveTodos(data) {
   // Check if there is already a todo data
   let todoData;
   if (localStorage.getItem("todoData") === null) {
@@ -123,6 +127,69 @@ function saveTodos(e) {
   } else {
     todoData = JSON.parse(localStorage.getItem("todoData"));
   }
-  todoData.push(e);
+  todoData.push(data);
+  localStorage.setItem("todoData", JSON.stringify(todoData));
+}
+
+//LOCAL STORAGE - GET DATA
+function getTodos() {
+  // Check if there is already a todo data
+  let todoData;
+  if (localStorage.getItem("todoData") === null) {
+    todoData = [];
+  } else {
+    todoData = JSON.parse(localStorage.getItem("todoData"));
+  }
+
+  todoData.forEach((e) => {
+    // Create a TODO DIV
+    const todoDiv = document.createElement("div");
+    // Adding a class to it
+    todoDiv.classList.add("todo");
+
+    // Create a Li for Todo Item
+    const newTodo = document.createElement("li");
+    // Adding a class to it
+    newTodo.classList.add("todo-item");
+    newTodo.innerText = e;
+
+    // Append to div
+    todoDiv.appendChild(newTodo);
+
+    // Create Completed Button
+    const completedBtn = document.createElement("button");
+    // Adding a class to it
+    completedBtn.classList.add("completed-btn");
+    // Adding text to it
+    completedBtn.innerHTML = '<i class="fas fa-check"></i>';
+    // Append to div
+    todoDiv.appendChild(completedBtn);
+
+    // Create Delete Button
+    const dltBtn = document.createElement("button");
+    // Adding a class to it
+    dltBtn.classList.add("dlt-btn");
+    // Adding text to it
+    dltBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    // // Append to div
+    todoDiv.appendChild(dltBtn);
+
+    // // Append div to ul
+    todoList.appendChild(todoDiv);
+  });
+}
+
+//LOCAL STORAGE - DELETE DATA
+function dltLocalTodo(data) {
+  // Check if there is already a todo data
+  let todoData;
+  if (localStorage.getItem("todoData") === null) {
+    todoData = [];
+  } else {
+    todoData = JSON.parse(localStorage.getItem("todoData"));
+  }
+  console.log(data.children[0].innerText);
+  const todoIndex = data.children[0].innerText;
+  todoData.splice(todoData.indexOf(todoIndex), 1);
   localStorage.setItem("todoData", JSON.stringify(todoData));
 }
