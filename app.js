@@ -3,12 +3,14 @@ const todoInput = document.querySelector(".todo-input");
 const todoBtn = document.querySelector(".todo-btn");
 const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".filter-todo");
+const deleteAll = document.querySelector(".dlt-all-btn");
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", getTodos);
 todoBtn.addEventListener("click", addTodo);
 todoList.addEventListener("click", compDlt);
 filterOption.addEventListener("click", filterTodo);
+deleteAll.addEventListener("click", dltAllTodo);
 // Functions
 function addTodo(event) {
   console.log("hi");
@@ -192,4 +194,9 @@ function dltLocalTodo(data) {
   const todoIndex = data.children[0].innerText;
   todoData.splice(todoData.indexOf(todoIndex), 1);
   localStorage.setItem("todoData", JSON.stringify(todoData));
+}
+
+function dltAllTodo() {
+  localStorage.clear();
+  todoList.innerHTML = "";
 }
